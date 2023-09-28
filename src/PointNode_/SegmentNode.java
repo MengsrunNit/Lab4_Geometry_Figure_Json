@@ -1,5 +1,5 @@
-package input.components.segment;
-import input.components.point.PointNode;
+package PointNode_; 
+
 /**
  * A utility class only for representing ONE segment
  */
