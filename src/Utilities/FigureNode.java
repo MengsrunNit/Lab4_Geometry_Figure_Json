@@ -1,10 +1,11 @@
 package Utilities;
-import csc223_2; 
+import PointNode_.*; 
 
 public class FigureNode <DataT>{
-	protected TreeNode<String> description; 
-	protected TreeNode<PointNodeDatabase> pointNodeDb ; 
-	protected TreeNode<SegmentNodeDatabase> SegementNodeDb; 
+	protected String description; 
+	protected PointNodeDatabase pointNodeDb ; 
+	protected SegmentNodeDatabase SegementNodeDb; 
 	
+
 	
 }
