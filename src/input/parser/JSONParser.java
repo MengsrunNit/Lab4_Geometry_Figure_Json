@@ -1,6 +1,7 @@
 package input.parser;
 
 import java.util.ArrayList;
+import 
 import java.util.List;
 
 
@@ -45,6 +46,8 @@ public class JSONParser
 
 		// extracting figure object 
 		JSONObject figureObj = JSONroot.getJSONObject("Figure"); 
+		
+	
 
 		// extract figure description
 		String description = figureObj.getString("Description"); 
@@ -53,7 +56,7 @@ public class JSONParser
 		PointNodeDatabase pointNodeDB = extractPointNodeDB(figureObj); 
 
 		// extract the segment 
-		SegmentNodeDatabase segmentNodeDB = extractSegmentNodeDB(figureObj, PointNodeDB); 
+		SegmentNodeDatabase segmentNodeDB = extractSegmentNodeDB(figureObj, pointNodeDB); 
 
 		// extract figure Node
 		FigureNode figureNode = new FigureNode(description, pointNodeDB, segmentNodeDB); 
@@ -63,9 +66,13 @@ public class JSONParser
 
 	// TODO: implement supporting functionality
 	
-	public PointNodeDatabase extractPointNodeDB(JSONArray jArray) {
+	public PointNodeDatabase extractPointNodeDB(JSONObject figureObj) {
 		PointNodeDatabase _pointNodeDatabase = new PointNodeDatabase(); 
-		for(Object item: jArray) {
+		
+		JSONArray pointArray = figureObj.getJSONArray("Points");
+		
+		for(Object item: pointArray) {
+			
 			JSONObject jObj = (JSONObject) item;
 			String name = jObj.getString("name"); 
 			Double x = jObj.getDouble("x"); 
@@ -77,37 +84,32 @@ public class JSONParser
 	}
 	
 	
-	public SegmentNodeDatabase extractSegmentNodeDB(JSONArray jArray , PointNodeDatabase _pointNodeDB) {
+	public SegmentNodeDatabase extractSegmentNodeDB(JSONObject figureObj , PointNodeDatabase _pointNodeDB) {
 		
 		SegmentNodeDatabase _segmentNodeDb = new SegmentNodeDatabase(); 
+		  // Extract the "Segments" array from the JSON
+		JSONArray segmentArray = figureObj.getJSONArray("Segments");
 		
-		JSONArray segmentArray = jArray.getJSONArray("Segments"); // big picture: controlling the whole array
-		
-		for(Object item: jArray) { // access to each array
-			//Cast the current ite to  JSONObject 
-			JSONObject jObj = (JSONObject) item;  //individual item
-			// 
-			for(String key: jObj.keySet()){ // individual item has more element. 
-				JSONArray pointNameArray = jObj.getJSONArray(key); 
-				List<PointNode> points = new ArrayList<>(): 
+	    
+		for(int i =0; i < segmentArray.length()-1; i++) {
+			//getting each heading in segment
+			JSONObject segmentObj = segmentArray.getJSONObject(i); 
+	
+			// adjlist implementation
+			ArrayList<PointNode> AdjPointNodeList = new ArrayList<>(); 
+			
+			String startPointName = segmentObj.keys().toString();
+			
+			for(String key : segmentObj.keySet()) {
 				
-				for (Object pointName: pointNameArray) {
-					String name = (String)pointName; 
-					
-					// need to access the name to get point???
-					pointNode point = _pointNodeDB.get(name); 
-					if(point != null) {
-						points.add(point);
-					}
-					else {
-					//	handle the case where a refereence point is missing
-					}
-				}
+	          
+	            PointNode valueNode = _pointNodeDB.getPoint(key);
+	            AdjPointNodeList.add(_pointNodeDB.getPoint(valueNode));
+	 
+	           
 			}
-			if(!point.isEmpty()) {
-				SegmentNode segmentNode = new SegmentNode(key, points); 
-				_segmentNodeDb.put(segmentNode); 
-			}
+			_segmentNodeDb.addAdjacencyList(_pointNodeDB.getPoint(startPointName), AdjPointNodeList);
+			
 		}
 		
 		return _segmentNodeDb; 

@@ -58,4 +58,13 @@ public class PointNodeDatabase {
 		ptDatabase.add(pt);
 		return pt;
 	}
+	
+	public PointNode getPoint(String name) {
+		for(PointNode points : ptDatabase) {
+			if(points != null && points.getName().equals(name)) {
+				return points;
+			}
+		}
+		return null; 
+	}
 }
