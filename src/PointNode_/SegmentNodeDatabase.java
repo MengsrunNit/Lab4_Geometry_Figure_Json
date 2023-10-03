@@ -1,6 +1,5 @@
 package PointNode_;
 
-
 import java.util.*;
 public class SegmentNodeDatabase{
 	
@@ -56,7 +55,7 @@ public class SegmentNodeDatabase{
 	public void addAdjacencyList(PointNode key, List<PointNode> values) {
 		
 		//Checks for the keys existence, so that it doesn't override existing set values.
-		if(_adjLists.containsKey(key))_adjLists.get(key).addAll(values);
+		if(_adjLists.containsKey(key)) _adjLists.get(key).addAll(values);
 		
 		//If it doesn't exist, creates a new Set, adds values and key to _adjLists
 		else {
@@ -96,10 +95,3 @@ public class SegmentNodeDatabase{
 		return segList;
 	}
 }
-
-
-
-
-
-
-

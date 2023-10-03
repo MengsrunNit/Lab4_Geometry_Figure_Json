@@ -2,6 +2,7 @@ package input.components;
 
 import java.util.Set;
 
+
 import input.components.point.PointNode;
 import input.components.point.PointNodeDatabase;
 import input.components.segment.SegmentNodeDatabase;
@@ -32,6 +33,8 @@ public class FigureNode implements ComponentNode
 	@Override
 	public void unparse(StringBuilder sb, int level)
 	{
+		//calls unparse in point and in segment to and output a list point in segment. 
         // TODO
     }
+	// create a string that output exactly amount of point and segement 
 }

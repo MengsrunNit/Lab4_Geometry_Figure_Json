@@ -6,7 +6,9 @@ public class PointNodeDatabase {
 
 	public PointNodeDatabase()
 	{
+
 		ptDatabase = new LinkedHashSet<PointNode>();
+
 	}
 
 	public PointNodeDatabase(Set <PointNode> points)
@@ -26,7 +28,9 @@ public class PointNodeDatabase {
 
 	public boolean contains(double x, double y)
 	{
+		
 		return ptDatabase.contains(new PointNode(x,y));
+		
 	}
 
 	public String getName(PointNode point)
@@ -55,7 +59,3 @@ public class PointNodeDatabase {
 		return pt;
 	}
 }
-
-
-
-

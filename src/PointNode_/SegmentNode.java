@@ -1,4 +1,5 @@
-package PointNode_; 
+package PointNode_;
+
 
 /**
  * A utility class only for representing ONE segment

@@ -1,5 +1,6 @@
 package PointNode_;
 
+import utilities.math.MathUtilities;
 /**
  * A 2D Point (x, y).
  */
