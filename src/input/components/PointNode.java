@@ -1,10 +1,11 @@
-package PointNode_;
+package input.components;
 
+import utilities.io.StringUtilities;
 import utilities.math.MathUtilities;
 /**
  * A 2D Point (x, y).
  */
-public class PointNode
+public class PointNode implements ComponentNode
 {
 	protected static final String ANONYMOUS = "__UNNAMED";
 	protected double _x;
@@ -54,5 +55,10 @@ public class PointNode
     public String toString()
     {
 		return _name + " (" + this._x + ", " + this._y + ")";
+	}
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		sb.append(toString());
+		sb.append(StringUtilities.indent(level));
 	}
 }

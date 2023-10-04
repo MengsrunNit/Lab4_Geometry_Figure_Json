@@ -1,10 +1,10 @@
-package PointNode_;
+package input.components;
 
 import java.util.*;
-public class PointNodeDatabase {
+public class PointNodeDatabase implements ComponentNode {
 	protected Set<PointNode> ptDatabase;
 
-	public PointNodeDatabase()
+	public PointNodeDatabase() 
 	{
 
 		ptDatabase = new LinkedHashSet<PointNode>();
@@ -66,5 +66,15 @@ public class PointNodeDatabase {
 			}
 		}
 		return null; 
+	}
+
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		// TODO Auto-generated method stub
+		for(PointNode point: ptDatabase) {
+			point.unparse(sb, level);
+		}
+		
+		
 	}
 }

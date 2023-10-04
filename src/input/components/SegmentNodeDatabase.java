@@ -1,7 +1,7 @@
-package PointNode_;
+package input.components;
 
 import java.util.*;
-public class SegmentNodeDatabase{
+public class SegmentNodeDatabase implements ComponentNode{
 	
 	protected Map<PointNode, Set<PointNode>> _adjLists;
 	
@@ -93,5 +93,11 @@ public class SegmentNodeDatabase{
 			}
 		}
 		return segList;
+	}
+
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		// TODO Auto-generated method stub
+		
 	}
 }

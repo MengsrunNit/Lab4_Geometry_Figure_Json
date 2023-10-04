@@ -1,5 +1,4 @@
-package PointNode_;
-
+package input.components;
 
 /**
  * A utility class only for representing ONE segment

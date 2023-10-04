@@ -1,12 +1,7 @@
 package input.components;
 
 import java.util.Set;
-
-
-import input.components.point.PointNode;
-import input.components.point.PointNodeDatabase;
-import input.components.segment.SegmentNodeDatabase;
-
+import utilities.io.*;
 /**
  * A basic figure consists of points, segments, and an optional description
  * 
@@ -35,6 +30,34 @@ public class FigureNode implements ComponentNode
 	{
 		//calls unparse in point and in segment to and output a list point in segment. 
         // TODO
+		sb.append("Figure: "+ "\n ");
+		sb.append(StringUtilities.indent(level));
+		sb.append("Description:" + getDescription() + "\n");
+		sb.append("PointNode:" + " \n{"); 
+		_points.unparse(sb, level);
+		
     }
+	
+	
 	// create a string that output exactly amount of point and segement 
+	 public static void main(String[] args) {
+		 PointNode point1 = new PointNode("A", 3, 2); 
+		 PointNode point2 = new PointNode("B", 4, 2); 
+		 PointNode point3 = new PointNode("C", 4,22);
+		 
+		 PointNodeDatabase pointDB = new PointNodeDatabase(); 
+		 pointDB.put(point3);
+		 pointDB.put(point2);
+		 pointDB.put(point1);
+		 
+		 SegmentNodeDatabase segmentDB = new SegmentNodeDatabase(); 
+		 segmentDB.addDirectedEdge(point1, point2);
+		 segmentDB.addUndirectedEdge(point1, point3);
+		 
+		 FigureNode test = new FigureNode("Test" , pointDB, segmentDB ); 
+		 StringBuilder mystring = new StringBuilder(); 
+		 test.unparse(mystring, 0);
+		 System.out.println(mystring);
+		 
+	 }
 }

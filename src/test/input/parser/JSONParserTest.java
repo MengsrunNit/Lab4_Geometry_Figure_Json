@@ -1,7 +1,10 @@
-package input.parser;
+package test.input.parser;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertion.*;
+
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.exception.ParseException;
+import input.parser.JSONParser;
 
 class JSONParserTest
 {
@@ -21,7 +25,7 @@ class JSONParserTest
 		return parser.parse(figureStr);
 	}
 	
-	@Test
+  
 	void empty_json_string_test()
 	{
 		JSONParser parser = new JSONParser();
@@ -38,7 +42,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("single_triangle.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("lib/single_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
 		

@@ -1,16 +1,13 @@
 package input.parser;
 
 import java.util.ArrayList;
-import 
-import java.util.List;
 
+import java.util.*;
 
-import PointNode_.PointNodeDatabase;
-import PointNode_.*; 
-import PointNode_.SegmentNode;
-import PointNode_.SegmentNodeDatabase;
+import PointNode_.*;
+
 import org.json.JSONObject;
-import org.json.HTTPTokener;
+
 import org.json.JSONTokener;
 import org.json.JSONArray;
 
@@ -28,7 +25,6 @@ public class JSONParser
 
 	private void error(String message)
 	{
-
 		throw new ParseException("Parse error: " + message);
 	}
 
@@ -59,9 +55,8 @@ public class JSONParser
 		SegmentNodeDatabase segmentNodeDB = extractSegmentNodeDB(figureObj, pointNodeDB); 
 
 		// extract figure Node
-		FigureNode figureNode = new FigureNode(description, pointNodeDB, segmentNodeDB); 
+		return new FigureNode(description, pointNodeDB, segmentNodeDB); 
 
-		return figureNode; 
 	}
 
 	// TODO: implement supporting functionality
@@ -104,6 +99,7 @@ public class JSONParser
 				
 	          
 	            PointNode valueNode = _pointNodeDB.getPoint(key);
+	            
 	            AdjPointNodeList.add(_pointNodeDB.getPoint(valueNode));
 	 
 	           
