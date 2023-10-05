@@ -72,7 +72,9 @@ public class PointNodeDatabase implements ComponentNode {
 	public void unparse(StringBuilder sb, int level) {
 		// TODO Auto-generated method stub
 		for(PointNode point: ptDatabase) {
+			
 			point.unparse(sb, level);
+			sb.append("\n");
 		}
 		
 		

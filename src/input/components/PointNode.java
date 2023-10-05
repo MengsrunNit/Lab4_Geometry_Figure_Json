@@ -51,14 +51,13 @@ public class PointNode implements ComponentNode
 		//Compares the corresponding coordinates for each PointNode
 		return (MathUtilities.doubleEquals(o._x, this._x) && MathUtilities.doubleEquals(o._y, this._y));
 	}
-    @Override
-    public String toString()
+	@Override
+	public String toString()
     {
-		return _name + " (" + this._x + ", " + this._y + ")";
+		return "Point(" +_name + ")(" + this._x + ", " + this._y + ")";
 	}
 	@Override
 	public void unparse(StringBuilder sb, int level) {
-		sb.append(toString());
-		sb.append(StringUtilities.indent(level));
+		sb.append(StringUtilities.indent(level) + toString());
 	}
 }

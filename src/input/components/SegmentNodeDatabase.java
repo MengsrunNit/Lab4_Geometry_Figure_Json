@@ -1,6 +1,7 @@
 package input.components;
 
 import java.util.*;
+import utilities.io.StringUtilities;
 public class SegmentNodeDatabase implements ComponentNode{
 	
 	protected Map<PointNode, Set<PointNode>> _adjLists;
@@ -98,6 +99,17 @@ public class SegmentNodeDatabase implements ComponentNode{
 	@Override
 	public void unparse(StringBuilder sb, int level) {
 		// TODO Auto-generated method stub
+//		for(PointNode k: _adjLists.keySet()) {
+//			sb.append(StringUtilities.indent(1) + k.getName() + ": ");
+//			for (PointNode v: _adjLists.get(k)) {
+//				sb.append(v.getName() + " ");
+//			}
+//			sb.append("\n");
+//		}
+		for (SegmentNode seg: asSegmentList()) {
+			sb.append(seg.getPoint1().getName());
+			sb.append(seg.getPoint2().getName());
+		}
 		
 	}
 }

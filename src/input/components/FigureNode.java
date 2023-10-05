@@ -1,6 +1,6 @@
 package input.components;
 
-import java.util.Set;
+
 import utilities.io.*;
 /**
  * A basic figure consists of points, segments, and an optional description
@@ -25,19 +25,20 @@ public class FigureNode implements ComponentNode
 		_segments = segments;
 	}
 
-	@Override
 	public void unparse(StringBuilder sb, int level)
 	{
-		//calls unparse in point and in segment to and output a list point in segment. 
+		//calls unparse in point and in segment to and output a list point in segment.
         // TODO
-		sb.append("Figure: "+ "\n ");
-		sb.append(StringUtilities.indent(level));
-		sb.append("Description:" + getDescription() + "\n");
-		sb.append("PointNode:" + " \n{"); 
-		_points.unparse(sb, level);
+		sb.append("Figure"+ "\n{\n");
+		sb.append(StringUtilities.indent(1) + "Description : \"" + getDescription() + "\"\n");
+		sb.append(StringUtilities.indent(1) + "Points:" + " \n" + StringUtilities.indent(1) + "{\n");
+		_points.unparse(sb, 1);
+		sb.append(StringUtilities.indent(1) + "}\n");
+		sb.append(StringUtilities.indent(1) + "Segments:" + " \n" + StringUtilities.indent(1) + "{\n");
+		_segments.unparse(sb, 1);
+		sb.append(StringUtilities.indent(1) + "}\n}");
 		
     }
-	
 	
 	// create a string that output exactly amount of point and segement 
 	 public static void main(String[] args) {
