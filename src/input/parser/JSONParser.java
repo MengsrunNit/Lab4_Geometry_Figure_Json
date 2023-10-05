@@ -145,7 +145,7 @@ public class JSONParser
 	        // Getting each heading in segment
 	        JSONObject segmentObj = segmentArray.getJSONObject(i);
 	        // Adjacency list implementation
-	        ArrayList<PointNode> AdjPointNodeList = new ArrayList<>();
+	        List<PointNode> AdjPointNodeList = new ArrayList<>();
 
 	        String startPointName = segmentObj.keys().next();
 	      //  System.out.println(startPointName);

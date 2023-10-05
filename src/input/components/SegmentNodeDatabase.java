@@ -17,23 +17,52 @@ public class SegmentNodeDatabase implements ComponentNode{
 		_adjLists = m;
 	}
 	
-	public int numUndirectedEdges() {
-		
-		List<SegmentNode> _list = new ArrayList<>();
-		
-		//Iterates through keys, then their values and counts them if their opposites are in the list.
-		int count = 0;
-		for(PointNode pt: _adjLists.keySet()) {	
-			for(PointNode p: _adjLists.get(pt)) {
-				
-				SegmentNode sn = new SegmentNode(pt, p);
-				if(_list.contains(sn))count++;
-				_list.add(sn);
-				
-			}
-		}
-		return count;
+//	public int numUndirectedEdges() {
+//		
+//		List<SegmentNode> _list = new ArrayList<>();
+//		
+//		//Iterates through keys, then their values and counts them if their opposites are in the list.
+//		int count = 0;
+//		for(PointNode pt: _adjLists.keySet()) {	
+//			for(PointNode p: _adjLists.get(pt)) {
+//				
+//				SegmentNode sn = new SegmentNode(pt, p);
+//				if(_list.contains(sn))count++;
+//				_list.add(sn);
+//				
+//			}
+//		}
+//		return count;
+//	}
+	
+	public int numDirectedEdges() {
+	    int count = 0;
+
+	    for (PointNode start : _adjLists.keySet()) {
+	        count += _adjLists.get(start).size();
+	    }
+
+	    return count;
 	}
+
+	
+	  //method 
+	public int numUndirectedEdges() {
+	    int count = 0;
+
+	    for (PointNode start : _adjLists.keySet()) {
+	        for (PointNode end : _adjLists.get(start)) {
+	            // Check if the edge (pt1, pt2) and (pt2, pt1) both exist
+	            if (_adjLists.containsKey(end) && _adjLists.get(end).contains(start)) {
+	                count++;
+	            }
+	        }
+	    }
+
+	    // Divide by 2 since each undirected edge is counted twice
+	    return count / 2;
+	}
+
 	
 	//Supposed to be private? How to test?
 	public void addDirectedEdge(PointNode pt1, PointNode pt2) {
@@ -55,6 +84,7 @@ public class SegmentNodeDatabase implements ComponentNode{
 		addDirectedEdge(pt1, pt2);
 		addDirectedEdge(pt2, pt1);
 	}
+	
 	
 	public void addAdjacencyList(PointNode key, List<PointNode> values) {
 		
