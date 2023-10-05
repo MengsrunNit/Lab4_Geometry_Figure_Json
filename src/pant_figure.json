@@ -1,0 +1,54 @@
+{
+    "Figure" :
+    {
+      "Description" : "A symmetrical heptagon that resembles a pair of shorts.",
+      "Points" :
+        [
+          {
+            "name" : "A",
+            "x" : 1,
+               "y" : 3
+          },
+          {
+            "name" : "B",
+            "x" : 2,
+               "y" : 1
+          },
+          {
+            "name" : "C",
+            "x" : 3,
+               "y" : 2
+          },
+          {
+            "name" : "D",
+            "x" : 4,
+            "y" : 1
+          },
+          {
+            "name" : "E",
+            "x" : 5,
+            "y" : 3
+          },
+          {
+            "name" : "F",
+            "x" : 4,
+            "y" : 5
+          },
+          {
+            "name" : "G",
+            "x" : 2,
+            "y" : 5
+          }
+        ],
+      "Segments" :
+        [
+          {"A" : ["B", "G"] },
+          {"B" : ["A", "C"] },
+          {"C" : ["B", "D"] },
+          {"D" : ["C", "E"] },
+          {"E" : ["D", "F"] },
+          {"F" : ["E", "G"] },
+          {"G" : ["F", "A"] }
+        ]
+    }
+  }

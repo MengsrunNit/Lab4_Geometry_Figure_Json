@@ -1,0 +1,43 @@
+{
+    "Figure" :
+    {
+      "Description" : "Pentagon in the first and second Quatrant",
+      "Points" :
+        [
+          {
+            "name" : "A",
+            "x" : 2,
+               "y" : 3
+          },
+          {
+            "name" : "B",
+            "x" : -2,
+               "y" : 5
+          },
+          {
+            "name" : "C",
+            "x" : 6,
+               "y" : 5
+          },
+          {
+            "name" : "D",
+            "x" : 2,
+               "y" : 0
+          },
+          {
+            "name" : "E",
+            "x" : 4,
+               "y" : 0
+          }
+        ],
+    
+      "Segments" :
+        [
+          {"A" : ["B", "C"] },
+          {"B" : ["D"]},
+          {"C" : ["E"]},
+          {"D" : ["E"]},
+          
+        ]
+    }
+  }

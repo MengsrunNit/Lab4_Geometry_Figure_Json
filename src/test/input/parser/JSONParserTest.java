@@ -414,7 +414,7 @@ class JSONParserTest
 
 	}
 
-@Test
+	@Test
 	void reflectedtraingle_Test() {
 		ComponentNode node = JSONParserTest.runFigureParseTest("src/start.json");
 
@@ -471,6 +471,160 @@ class JSONParserTest
 		System.out.println(sb.toString());
 
 	}
+
+	@Test
+	void pant_figure_Test() {
+		ComponentNode node = JSONParserTest.runFigureParseTest("src/pant_figure.json");
+
+		FigureNode figure = (FigureNode)node; 
+
+		//	assertTrue(node instanceof FigureNode);
+
+		// extract the CoponentNode to SegmentNodeDatabase
+		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
+		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
+
+
+		// description test 
+		assertEquals(figure.getDescription(),"A symmetrical heptagon that resembles a pair of shorts.");
+		// check if there is Point A in the Database correction position x, and y
+
+		PointNode pointA = pointNodeDB.getPoint("A");
+
+		assertTrue(MathUtilities.doubleEquals(pointA.getX(),1));
+		assertTrue(MathUtilities.doubleEquals(pointA.getY(),3));
+
+
+		// check if there is Point B in the Database correction position x, and y
+		PointNode pointB = pointNodeDB.getPoint("B");
+
+		assertTrue(MathUtilities.doubleEquals(pointB.getX(),2));
+		assertTrue(MathUtilities.doubleEquals(pointB.getY(),1));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointC = pointNodeDB.getPoint("C");
+
+		assertTrue(MathUtilities.doubleEquals(pointC.getX(),3));
+		assertTrue(MathUtilities.doubleEquals(pointC.getY(),2));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointD = pointNodeDB.getPoint("D");
+
+		assertTrue(MathUtilities.doubleEquals(pointD.getX(),4));
+		assertTrue(MathUtilities.doubleEquals(pointD.getY(),1));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointE = pointNodeDB.getPoint("E");
+
+		assertTrue(MathUtilities.doubleEquals(pointE.getX(),5));
+		assertTrue(MathUtilities.doubleEquals(pointE.getY(),3));
+
+		// check if there is Point F in the Database correction position x, and y
+		PointNode pointF = pointNodeDB.getPoint("F");
+
+		assertTrue(MathUtilities.doubleEquals(pointF.getX(),4));
+		assertTrue(MathUtilities.doubleEquals(pointF.getY(),5));
+
+
+		PointNode pointG = pointNodeDB.getPoint("G");
+
+		assertTrue(MathUtilities.doubleEquals(pointG.getX(),2));
+		assertTrue(MathUtilities.doubleEquals(pointG.getY(),5));
+
+		//assertTrue(expectedSegment.equals(segmentNodeDB));
+		assertEquals(segmentNodeDB.numDirectedEdges(), 14); 
+
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+
+	}
+	
+	@Test
+	void shirt_figure_Test() {
+		ComponentNode node = JSONParserTest.runFigureParseTest("src/shirt_figure.json");
+
+		FigureNode figure = (FigureNode)node; 
+
+		//	assertTrue(node instanceof FigureNode);
+
+		// extract the CoponentNode to SegmentNodeDatabase
+		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
+		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
+
+
+		// description test 
+		assertEquals(figure.getDescription(),"A symmetrical set of shapes that resembles a tee with a crossing pattern on the lower half.");
+		// check if there is Point A in the Database correction position x, and y
+
+		PointNode pointA = pointNodeDB.getPoint("A");
+
+		assertTrue(MathUtilities.doubleEquals(pointA.getX(),1));
+		assertTrue(MathUtilities.doubleEquals(pointA.getY(),1));
+
+
+		// check if there is Point B in the Database correction position x, and y
+		PointNode pointB = pointNodeDB.getPoint("B");
+
+		assertTrue(MathUtilities.doubleEquals(pointB.getX(),1));
+		assertTrue(MathUtilities.doubleEquals(pointB.getY(),5));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointC = pointNodeDB.getPoint("C");
+
+		assertTrue(MathUtilities.doubleEquals(pointC.getX(),3));
+		assertTrue(MathUtilities.doubleEquals(pointC.getY(),5));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointD = pointNodeDB.getPoint("D");
+
+		assertTrue(MathUtilities.doubleEquals(pointD.getX(),3));
+		assertTrue(MathUtilities.doubleEquals(pointD.getY(),1));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointE = pointNodeDB.getPoint("E");
+
+		assertTrue(MathUtilities.doubleEquals(pointE.getX(),2));
+		assertTrue(MathUtilities.doubleEquals(pointE.getY(),3));
+
+		// check if there is Point F in the Database correction position x, and y
+		PointNode pointF = pointNodeDB.getPoint("F");
+
+		assertTrue(MathUtilities.doubleEquals(pointF.getX(),3));
+		assertTrue(MathUtilities.doubleEquals(pointF.getY(),3));
+
+
+		PointNode pointG = pointNodeDB.getPoint("G");
+
+		assertTrue(MathUtilities.doubleEquals(pointG.getX(),4));
+		assertTrue(MathUtilities.doubleEquals(pointG.getY(),3));
+		
+		// check if there is Point F in the Database correction position x, and y
+		PointNode pointH = pointNodeDB.getPoint("H");
+
+		assertTrue(MathUtilities.doubleEquals(pointH.getX(),0));
+		assertTrue(MathUtilities.doubleEquals(pointH.getY(),3));
+
+
+		PointNode pointI = pointNodeDB.getPoint("I");
+
+		assertTrue(MathUtilities.doubleEquals(pointI.getX(),1));
+		assertTrue(MathUtilities.doubleEquals(pointI.getY(),3));
+
+
+		//assertTrue(expectedSegment.equals(segmentNodeDB));
+		assertEquals(segmentNodeDB.numDirectedEdges(), 28); 
+
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+
+	}
+
 
 
 }

@@ -1,0 +1,44 @@
+
+{
+    "Figure" :
+    {
+      "Description" : "Reflected traingle made up of 5 points",
+      "Points" :
+        [
+          {
+            "name" : "A",
+            "x" : 2,
+               "y" : 2
+          },
+          {
+            "name" : "B",
+            "x" : 4,
+               "y" : 6
+          },
+           {
+            "name" : "C",
+            "x" : 10,
+               "y" : 6
+          },
+          {
+            "name" : "D",
+            "x" : 8,
+               "y" : 2
+          },
+           {
+            "name" : "E",
+            "x" : 6,
+               "y" : 4
+          }
+        ],
+    
+      "Segments" :
+        [
+          {"A" : ["B", "C"] },
+          {"B" : ["E"]},
+          {"C" : ["D"]},
+          {"E" : ["C", "D"]}
+          
+        ]
+    }
+  }
