@@ -1,6 +1,5 @@
 package input.parser;
 
-import java.util.ArrayList;
 import input.components.PointNode;
 
 import java.util.*;
@@ -145,22 +144,24 @@ public class JSONParser
 	    for (int i = 0; i < segmentArray.length() ; i++) {
 	        // Getting each heading in segment
 	        JSONObject segmentObj = segmentArray.getJSONObject(i);
-
 	        // Adjacency list implementation
 	        ArrayList<PointNode> AdjPointNodeList = new ArrayList<>();
 
 	        String startPointName = segmentObj.keys().next();
-
+	      //  System.out.println(startPointName);
+	     //   System.out.print(":");
 	        JSONArray endPointNames = segmentObj.getJSONArray(startPointName);
 
 	        // Retrieve the start pointNode from the database
 	        PointNode startPointNode = _pointNodeDB.getPoint(startPointName);
-
+	        
 	        // If the start point node from the database is null, throw an exception
 	        if (startPointNode == null) {
 	            throw new ParseException("Invalid Segment:" + startPointName);
 	        }
 
+	       // ArrayList<PointNode> ptDatabase = new ArrayList<PointNode>(); 
+	        
 	        // Iterate over the array of the end points name and create edge
 	        for (int j = 0; j < endPointNames.length(); j++) {
 	            String endPointName = endPointNames.getString(j);
@@ -170,11 +171,18 @@ public class JSONParser
 	            if (endPointNode == null) {
 	                throw new ParseException("Invalid Segment:" + endPointName);
 	            }
-
+	          //  System.out.print(endPointName);
+	          // ptDatabase.add(endPointNode);
 	            // Store the segments
-	            _segmentNodeDb.addUndirectedEdge(startPointNode, endPointNode);
+	            AdjPointNodeList.add(endPointNode);
+	            //_segmentNodeDb.addUndirectedEdge(startPointNode, endPointNode);
 	        }
+	   //     System.out.print(ptDatabase.toString());
+	       // System.out.println();
+	        _segmentNodeDb.addAdjacencyList(startPointNode, AdjPointNodeList);
+	        
 	    }
+	  
 
 	    // Return the segment database after processing all segments
 	    return _segmentNodeDb;

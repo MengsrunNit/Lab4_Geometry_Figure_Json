@@ -101,11 +101,15 @@ public class SegmentNodeDatabase implements ComponentNode{
 
 	@Override	public void unparse(StringBuilder sb, int level) {
 		// TODO Auto-generated method stub
+		
 		for(PointNode k: _adjLists.keySet()) {
-		sb.append(StringUtilities.indent(1) + k.getName() + ": ");
-			for (PointNode v: _adjLists.get(k)) {
-			sb.append(v.getName() + " ");
-		}
+			sb.append(StringUtilities.indent(1) + k.getName() + ": ");
+				for (PointNode v: _adjLists.get(k)) {
+					sb.append(v.getName() + " ");
+			
+					
+		}	
+	
 		sb.append("\n");
 		}
 //		for (SegmentNode seg: asSegmentList()) {
