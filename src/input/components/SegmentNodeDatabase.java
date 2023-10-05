@@ -17,23 +17,6 @@ public class SegmentNodeDatabase implements ComponentNode{
 		_adjLists = m;
 	}
 	
-//	public int numUndirectedEdges() {
-//		
-//		List<SegmentNode> _list = new ArrayList<>();
-//		
-//		//Iterates through keys, then their values and counts them if their opposites are in the list.
-//		int count = 0;
-//		for(PointNode pt: _adjLists.keySet()) {	
-//			for(PointNode p: _adjLists.get(pt)) {
-//				
-//				SegmentNode sn = new SegmentNode(pt, p);
-//				if(_list.contains(sn))count++;
-//				_list.add(sn);
-//				
-//			}
-//		}
-//		return count;
-//	}
 	
 	public int numDirectedEdges() {
 	    int count = 0;
@@ -142,13 +125,9 @@ public class SegmentNodeDatabase implements ComponentNode{
 	
 		sb.append("\n");
 		}
-//		for (SegmentNode seg: asSegmentList()) {
-//		sb.append(seg.getPoint1().getName());
-//		sb.append(seg.getPoint2().getName());
-		}
-	
-	
-	
 
+	}
+	
+	
 
 }

@@ -44,7 +44,10 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
+
+		// export the JSON document to the into the ComponentNode 
 		ComponentNode node = JSONParserTest.runFigureParseTest("src/single_triangle.json");
+
 
 		assertTrue(node instanceof FigureNode);
 
@@ -87,11 +90,20 @@ class JSONParserTest
 	@Test
 	void fully_connected_irregular_polygon_Test() {
 
+		// export the JSON document to the into the ComponentNode 
 		ComponentNode node = JSONParserTest.runFigureParseTest("src/fully_connected_irregular_polygon.json");
 
-		FigureNode figure = (FigureNode)node; 
+		
 
+		//extract the coponentNode to FigureNode
+		FigureNode figure = (FigureNode)node; 
+		
+		assertTrue(node instanceof FigureNode);
+
+		// extract the CoponentNode to SegmentNodeDatabase
 		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
 		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
 
 
@@ -164,7 +176,7 @@ class JSONParserTest
 
 		StringBuilder sb = new StringBuilder();
 		node.unparse(sb, 0);
-	//	expectedSegment.unparse(sb, 0);
+		//	expectedSegment.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}
 	@Test
@@ -172,10 +184,17 @@ class JSONParserTest
 
 		ComponentNode node = JSONParserTest.runFigureParseTest("src/crossing_symmetric_triangle.json");
 
-		FigureNode figure = (FigureNode)node; 
 
+		FigureNode figure = (FigureNode)node; 
+		
+		assertTrue(node instanceof FigureNode);
+
+		// extract the CoponentNode to SegmentNodeDatabase
 		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
 		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
+
 
 		// check if there is Point A in the Database correction position x, and y
 		PointNode pointA = pointNodeDB.getPoint("A");
@@ -221,15 +240,20 @@ class JSONParserTest
 		ComponentNode node = JSONParserTest.runFigureParseTest("src/collinear_line_segments.json");
 
 		FigureNode figure = (FigureNode)node; 
+		
+		assertTrue(node instanceof FigureNode);
 
+		// extract the CoponentNode to SegmentNodeDatabase
 		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
 		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
 
-		
+
 		// description test 
 		assertEquals(figure.getDescription(),"A seqeunce of collinear line segments mimicking one line with 6 points.");
 		// check if there is Point A in the Database correction position x, and y
-		
+
 		PointNode pointA = pointNodeDB.getPoint("A");
 
 		assertTrue(MathUtilities.doubleEquals(pointA.getX(),0));
@@ -262,11 +286,67 @@ class JSONParserTest
 
 		//assertTrue(expectedSegment.equals(segmentNodeDB));
 		assertEquals(segmentNodeDB.numDirectedEdges(), 5); 
-		
+
 		StringBuilder sb = new StringBuilder();
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
-	
+
+	}
+	@Test
+	void pentagon_Test() {
+		ComponentNode node = JSONParserTest.runFigureParseTest("src/pentagon.json");
+
+		FigureNode figure = (FigureNode)node; 
+		
+		assertTrue(node instanceof FigureNode);
+
+		// extract the CoponentNode to SegmentNodeDatabase
+		SegmentNodeDatabase segmentNodeDB = figure.getSegments();
+
+		// extract the figure to PointNodeDatabase
+		PointNodeDatabase pointNodeDB = figure.getPointsDatabase();
+
+
+		// description test 
+		assertEquals(figure.getDescription(),"Pentagon in the first and second Quatrant");
+		// check if there is Point A in the Database correction position x, and y
+
+		PointNode pointA = pointNodeDB.getPoint("A");
+
+		assertTrue(MathUtilities.doubleEquals(pointA.getX(),2));
+		assertTrue(MathUtilities.doubleEquals(pointA.getY(),3));
+
+
+		// check if there is Point B in the Database correction position x, and y
+		PointNode pointB = pointNodeDB.getPoint("B");
+
+		assertTrue(MathUtilities.doubleEquals(pointB.getX(),-2));
+		assertTrue(MathUtilities.doubleEquals(pointB.getY(),5));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointC = pointNodeDB.getPoint("C");
+
+		assertTrue(MathUtilities.doubleEquals(pointC.getX(),6));
+		assertTrue(MathUtilities.doubleEquals(pointC.getY(),5));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointD = pointNodeDB.getPoint("D");
+
+		assertTrue(MathUtilities.doubleEquals(pointD.getX(),2));
+		assertTrue(MathUtilities.doubleEquals(pointD.getY(),0));
+
+		// check if there is Point C in the Database correction position x, and y
+		PointNode pointE = pointNodeDB.getPoint("E");
+
+		assertTrue(MathUtilities.doubleEquals(pointE.getX(),4));
+		assertTrue(MathUtilities.doubleEquals(pointE.getY(),0));
+
+		//assertTrue(expectedSegment.equals(segmentNodeDB));
+		assertEquals(segmentNodeDB.numDirectedEdges(), 5); 
+
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
 
 	}
 
