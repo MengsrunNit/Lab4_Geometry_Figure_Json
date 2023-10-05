@@ -40,25 +40,6 @@ public class FigureNode implements ComponentNode
 		
     }
 	
-	// create a string that output exactly amount of point and segement 
-	 public static void main(String[] args) {
-		 PointNode point1 = new PointNode("A", 3, 2); 
-		 PointNode point2 = new PointNode("B", 4, 2); 
-		 PointNode point3 = new PointNode("C", 4,22);
-		 
-		 PointNodeDatabase pointDB = new PointNodeDatabase(); 
-		 pointDB.put(point3);
-		 pointDB.put(point2);
-		 pointDB.put(point1);
-		 
-		 SegmentNodeDatabase segmentDB = new SegmentNodeDatabase(); 
-		 segmentDB.addDirectedEdge(point1, point2);
-		 segmentDB.addUndirectedEdge(point1, point3);
-		 
-		 FigureNode test = new FigureNode("Test" , pointDB, segmentDB ); 
-		 StringBuilder mystring = new StringBuilder(); 
-		 test.unparse(mystring, 0);
-		 System.out.println(mystring);
-		 
-	 }
+	
+	
 }

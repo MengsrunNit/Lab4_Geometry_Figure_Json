@@ -103,84 +103,84 @@ public class JSONParser
 		
 	}
 	
-public SegmentNodeDatabase extractSegmentNodeDB(JSONObject figureObj , PointNodeDatabase _pointNodeDB) {
-		
-		SegmentNodeDatabase _segmentNodeDb = new SegmentNodeDatabase(); 
-		  // Extract the "Segments" array from the JSON
-		JSONArray segmentArray = figureObj.getJSONArray("Segments");
-		
-	    
-		for(int i =0; i < segmentArray.length()-1; i++) {
-			//getting each heading in segment
-			JSONObject segmentObj = segmentArray.getJSONObject(i); 
-	
-			// adjlist implementation
-			ArrayList<PointNode> AdjPointNodeList = new ArrayList<>(); 
-			
-			String startPointName = segmentObj.keys().toString();
-			
-			for(String key : segmentObj.keySet()) {
-				
-	          
-	            PointNode valueNode = _pointNodeDB.getPoint(key);
-	            
-	            AdjPointNodeList.add(_pointNodeDB.getPoint(valueNode));
-	 
-	           
-			}
-			_segmentNodeDb.addAdjacencyList(_pointNodeDB.getPoint(startPointName), AdjPointNodeList);
-			
-		}
-		
-		return _segmentNodeDb; 
-	}
-	
+//public SegmentNodeDatabase extractSegmentNodeDB(JSONObject figureObj , PointNodeDatabase _pointNodeDB) {
+//		
+//		SegmentNodeDatabase _segmentNodeDb = new SegmentNodeDatabase(); 
+//		  // Extract the "Segments" array from the JSON
+//		JSONArray segmentArray = figureObj.getJSONArray("Segments");
+//		
+//	    
+//		for(int i =0; i < segmentArray.length()-1; i++) {
+//			//getting each heading in segment
+//			JSONObject segmentObj = segmentArray.getJSONObject(i); 
+//	
+//			// adjlist implementation
+//			ArrayList<PointNode> AdjPointNodeList = new ArrayList<>(); 
+//			
+//			String startPointName = segmentObj.keys().toString();
+//			
+//			for(String key : segmentObj.keySet()) {
+//				
+//	          
+//	            PointNode valueNode = _pointNodeDB.getPoint(key);
+//	            
+//	            AdjPointNodeList.add(_pointNodeDB.getPoint(valueNode));
+//	 
+//	           
+//			}
+//			_segmentNodeDb.addAdjacencyList(_pointNodeDB.getPoint(startPointName), AdjPointNodeList);
+//			
+//		}
+//		
+//		return _segmentNodeDb; 
+//	}
+//	
 
-/*public SegmentNodeDatabase extractSegmentNodeDB(JSONObject figureObj , PointNodeDatabase _pointNodeDB) {
-		//copy the segments into segmentArray
-		JSONArray segmentArray = figureObj.getJSONArray("Segments");
-		SegmentNodeDatabase _segmentNodeDb = new SegmentNodeDatabase(); 
-		
-	    //iterate over each segment object and add to the databse
-		for(int i =0; i < segmentArray.length()-1; i++) {
-			//getting each heading in segment
-			JSONObject segmentObj = segmentArray.getJSONObject(i); 
-			
-			
-			// adjlist implementation
-			ArrayList<PointNode> AdjPointNodeList = new ArrayList<>(); 
-			
-			String startPointName = segmentObj.keys().next();
-			
-			JSONArray endPointNames = segmentObj.getJSONArray(startPointName); 
-			
-			// retrieve the start pointNode from the databse
-			PointNode startPointNode = _pointNodeDB.getPoint(startPointName);
-			
-			//if the start point node from the database 
-			if(startPointNode == null) {
-				throw new ParseException("Invalid Segment:" + startPointName);
-			}
-			
-			//iteratre over the arry of the end points name and create edge: 
-			for(int j =0; j< endPointNames.length(); j++) {
-				String endPointName = endPointNames.getString(j); 
-				PointNode endPointNode = _pointNodeDB.getPoint(endPointName);
-				
-				// if the end point could not be found, throw an exception: 
-				if(endPointNode == null) {
-					throw new ParseException("Invalid Segment:" + endPointName);
-				}
-				
-				//store the segments
-				_segmentNodeDb.addUndirectedEdge(startPointNode, endPointNode);
-			}
-			
-		
-		return _segmentNodeDb; 
-	} 
-}
-*/
+	public SegmentNodeDatabase extractSegmentNodeDB(JSONObject figureObj, PointNodeDatabase _pointNodeDB) {
+	    // Copy the segments into segmentArray
+	    JSONArray segmentArray = figureObj.getJSONArray("Segments");
+	    SegmentNodeDatabase _segmentNodeDb = new SegmentNodeDatabase();
+
+	    // Iterate over each segment object and add to the database
+	    for (int i = 0; i < segmentArray.length() ; i++) {
+	        // Getting each heading in segment
+	        JSONObject segmentObj = segmentArray.getJSONObject(i);
+
+	        // Adjacency list implementation
+	        ArrayList<PointNode> AdjPointNodeList = new ArrayList<>();
+
+	        String startPointName = segmentObj.keys().next();
+
+	        JSONArray endPointNames = segmentObj.getJSONArray(startPointName);
+
+	        // Retrieve the start pointNode from the database
+	        PointNode startPointNode = _pointNodeDB.getPoint(startPointName);
+
+	        // If the start point node from the database is null, throw an exception
+	        if (startPointNode == null) {
+	            throw new ParseException("Invalid Segment:" + startPointName);
+	        }
+
+	        // Iterate over the array of the end points name and create edge
+	        for (int j = 0; j < endPointNames.length(); j++) {
+	            String endPointName = endPointNames.getString(j);
+	            PointNode endPointNode = _pointNodeDB.getPoint(endPointName);
+
+	            // If the end point could not be found, throw an exception
+	            if (endPointNode == null) {
+	                throw new ParseException("Invalid Segment:" + endPointName);
+	            }
+
+	            // Store the segments
+	            _segmentNodeDb.addUndirectedEdge(startPointNode, endPointNode);
+	        }
+	    }
+
+	    // Return the segment database after processing all segments
+	    return _segmentNodeDb;
+	}
+
+
 }
 	
 

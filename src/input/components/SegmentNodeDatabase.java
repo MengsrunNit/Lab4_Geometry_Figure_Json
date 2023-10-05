@@ -1,6 +1,8 @@
 package input.components;
 
 import java.util.*;
+
+import input.components.point.PointNode;
 import utilities.io.StringUtilities;
 public class SegmentNodeDatabase implements ComponentNode{
 	
@@ -32,8 +34,9 @@ public class SegmentNodeDatabase implements ComponentNode{
 		}
 		return count;
 	}
+	
 	//Supposed to be private? How to test?
-	protected void addDirectedEdge(PointNode pt1, PointNode pt2) {
+	public void addDirectedEdge(PointNode pt1, PointNode pt2) {
 		
 		//Checks for the keys existence, so it doesn't override.
 		if(_adjLists.containsKey(pt1)) _adjLists.get(pt1).add(pt2);
@@ -96,20 +99,22 @@ public class SegmentNodeDatabase implements ComponentNode{
 		return segList;
 	}
 
-	@Override
-	public void unparse(StringBuilder sb, int level) {
+	@Override	public void unparse(StringBuilder sb, int level) {
 		// TODO Auto-generated method stub
-//		for(PointNode k: _adjLists.keySet()) {
-//			sb.append(StringUtilities.indent(1) + k.getName() + ": ");
-//			for (PointNode v: _adjLists.get(k)) {
-//				sb.append(v.getName() + " ");
-//			}
-//			sb.append("\n");
-//		}
-		for (SegmentNode seg: asSegmentList()) {
-			sb.append(seg.getPoint1().getName());
-			sb.append(seg.getPoint2().getName());
+		for(PointNode k: _adjLists.keySet()) {
+		sb.append(StringUtilities.indent(1) + k.getName() + ": ");
+			for (PointNode v: _adjLists.get(k)) {
+			sb.append(v.getName() + " ");
 		}
-		
-	}
+		sb.append("\n");
+		}
+//		for (SegmentNode seg: asSegmentList()) {
+//		sb.append(seg.getPoint1().getName());
+//		sb.append(seg.getPoint2().getName());
+		}
+	
+	
+	
+
+
 }
